@@ -1,0 +1,79 @@
+<div id="fullscreen" style="position:relative;padding-top:20px;background: #fff;" >
+  <em class="fa fa-compress hand " style="position: absolute;right: 0px;top: 0px; font-size: 30px;" (click)="zoomItem()"   (touchstart)="zoomItem()"  title="缩小"></em>
+  <em class="fa fa-arrow-circle-left hand z-index" style="position: absolute;left: 0px;top: 50%; font-size:30px; z-index:99999999;" (click)="upWard()"  (touchstart)="upWard()"  title="向上"></em>
+  <em class="fa fa-arrow-circle-right hand z-index" style="position: absolute;right: 0px;top: 50%; font-size:30px; z-index:99999999;"  (click)="down()"  (touchstart)="down()"  title="向下"></em>
+  <div [ngSwitch]="fullscreenIndex">
+    <div   *ngSwitchCase="'demo1'" >
+      <div echarts [options]="echartsOption1"  id="fullscreenEcharts" style="height: 600px;"></div>
+    </div>
+    <div   *ngSwitchCase="'demo2'" >
+      <div echarts [options]="echartsOption2"  id="fullscreenEcharts" style="height: 600px;"></div>
+    </div>
+  </div>
+</div>
+
+<div [style.height]="gridsterContainerHeight" >
+<!--ignoreContentClass: 'gridster-item-content', // default content class to ignore the drag event from -->
+<gridster [options]="options" style="height:650px;"  id="gridster">
+  <gridster-item [item]="item['view']" *ngFor="let item of dashboard;let i =index;">
+    <!-- your content here -->
+    <div class="fs-md" style="padding-top:  5px;">
+        <label class="item-label gridster-item-content">{{item['label']}}</label>
+        <div style="position:absolute;top: 0px;right:0px;">
+
+            <div class="float-right pr-10 hand gridster-item-content" style="cursor: pointer;padding-right: 10px;" (click)="zoomItem($event, item)"
+                (touchstart)="zoomItem($event, item)" mdTooltip="Remove" title="放大">
+                <em class="fa fa-expand" title="放大"></em>
+            </div>
+
+            <div  class="float-right pr-10 hand gridster-item-content" style="cursor: pointer;padding-right: 10px;" (click)="removeItem($event, item)"
+                    (touchstart)="removeItem($event, item)" mdTooltip="Remove">
+                    <em class="anticon anticon-close" title="删除">X</em>
+            </div>
+
+
+            <div  class="float-right pr-10 hand" style="cursor: pointer;padding-right: 10px;" >
+                <em class="fa fa-arrows" title="拖拽"></em>
+            </div>
+        </div>
+
+      <div [ngSwitch]="i+1"  class="gridster-item-content">
+        <div   *ngSwitchCase="'1'">
+            <div echarts [options]="echartsOption1" class="demo-chart" (chartInit)="onChartInit($event,i+1)" id="demo1" ></div>
+        </div>
+        <div   *ngSwitchCase="'2'" >
+            <div echarts [options]="echartsOption2" class="demo-chart" (chartInit)="onChartInit($event,i+1)"  id="demo2"></div>
+        </div>
+        <div   *ngSwitchCase="'3'" >
+          item content {{i+1}}
+        </div>
+        <div   *ngSwitchCase="'4'" >
+          item content {{i+1}}
+        </div>
+        <div   *ngSwitchCase="'5'" >
+          item content {{i+1}}
+        </div>
+        <div   *ngSwitchCase="'6'" >
+          item content {{i+1}}
+        </div>
+        <div   *ngSwitchCase="'7'" >
+          item content {{i+1}}
+        </div>
+        <div   *ngSwitchCase="'8'">
+          item content {{i+1}}
+        </div>
+      </div>
+
+    </div>
+
+  </gridster-item>
+</gridster>
+    <div
+      draggable="true"
+      >
+      Drag me!
+    </div>
+</div>
+
+
+
