@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import {GridsterConfig,GridsterItem } from "angular-gridster2";
+import {GridsterComponent, GridsterConfig,GridsterItem } from "angular-gridster2";
 
 
 @Component({
@@ -17,7 +17,7 @@ export class TemplateComponent implements OnInit{
   public echartsInstance2:any;
   public echartsOption1: any;
   public echartsOption2: any;
-  gridsterContainerHeight: string = '800px';
+  gridsterContainerHeight: string = '650px';
   static itemChange(item: any, itemComponent: any) {
     console.info('itemChanged', item, itemComponent);
   }
@@ -25,6 +25,45 @@ export class TemplateComponent implements OnInit{
   static itemResize(item: any, itemComponent: any) {
     console.info('itemResized', item, itemComponent);
   }
+  public stats = [
+    {
+      id: "echarts1",
+      color: 'primary',
+      title: 'HTTP Chat',
+      subtitle: '',
+      img: 'assets/images/svgs/icon-paypal.svg',
+      percent: '623 G',
+      enable: true
+    },
+    {
+      id: "echarts2",
+      color: 'success',
+      title: 'DNS Chat',
+      subtitle: '',
+      img: 'assets/images/svgs/icon-office-bag.svg',
+      percent: '345 G',
+      enable: true
+    },
+    {
+      id: "echarts3",
+      color: 'warning',
+      title: 'IP Chart',
+      subtitle: '',
+      img: 'assets/images/svgs/icon-master-card.svg',
+      percent: '2235',
+      enable: true
+    },
+    // {
+    //   id: 4,
+    //   color: 'error',
+    //   title: 'Saas',
+    //   subtitle: '',
+    //   img: 'assets/images/svgs/icon-pie.svg',
+    //   percent: '32',
+    //   enable: true
+    // },
+  ];
+  private selectedWeight: any;
    constructor(
    ) { }
    webSite: any[] = [ ];
@@ -32,6 +71,7 @@ export class TemplateComponent implements OnInit{
    offlineChartData: any[] = [];
 
    ngOnInit() {
+
        let self = this;
        this.echartsOption1 = {
            title: {
@@ -47,12 +87,12 @@ export class TemplateComponent implements OnInit{
                bottom: '3%',
                containLabel: true
            },
-           toolbox: {
-               feature: {
-                   saveAsImage: {}
-               },
-               right:'10%'
-           },
+          //  toolbox: {
+          //      feature: {
+          //          saveAsImage: {}
+          //      },
+          //      right:'10%'
+          //  },
            xAxis: {
                type: 'category',
                boundaryGap: false,
@@ -108,12 +148,12 @@ export class TemplateComponent implements OnInit{
                bottom: '3%',
                containLabel: true
            },
-           toolbox: {
-               feature: {
-                   saveAsImage: {}
-               },
-               right:'10%'
-           },
+          //  toolbox: {
+          //      feature: {
+          //          saveAsImage: {}
+          //      },
+          //      right:'10%'
+          //  },
            xAxis: {
                type: 'category',
                boundaryGap: false,
@@ -151,11 +191,11 @@ export class TemplateComponent implements OnInit{
                // chart.forceFit()
 
                if(echarts){/*在gridster2 Change的时候出发echarts的resize方法*/
-                   echarts.style.width = itemComponent.width+'px';
-                   echarts.style.height = itemComponent.height-30+'px';
-
+                  echarts.style.width = itemComponent.width - 50 +'px';
+                   echarts.style.height = itemComponent.height - 80+'px';
+                  console.log(item)
                    // /*根据不同的模块 重置相应的图*/
-                   let a = {"demo1":self.echartsInstance1,"demo2":self.echartsInstance2} as any;
+                   let a = {"echarts1":self.echartsInstance1,"echarts2":self.echartsInstance2} as any;
                    a[item['id']].resize();
                }
                console.log('itemChangeCallback', item, itemComponent);
@@ -169,12 +209,12 @@ export class TemplateComponent implements OnInit{
                //chart.forceFit()
                let echarts = document.getElementById(`${item['id']}`);
                if(echarts){/*在gridster2 resize的时候出发echarts的resize方法*/
-                   echarts.style.width = itemComponent.width+'px';
-                   echarts.style.height = itemComponent.height-30+'px';
+                   echarts.style.width = itemComponent.width - 50 +'px';
+                   echarts.style.height = itemComponent.height - 80+'px';
                //     /*根据不同的模块 重置相应的图*/
                   //  console.log(self['echartsInstance1'])
                    setTimeout(()=>{
-                   let a = {"demo1":self.echartsInstance1,"demo2":self.echartsInstance2} as any;
+                   let a = {"echarts1":self.echartsInstance1,"echarts2":self.echartsInstance2} as any;
                     console.log("延迟打印")
                     // console.log(self['echartsInstance1'])
                     a[item['id']].resize();
@@ -208,112 +248,81 @@ export class TemplateComponent implements OnInit{
            swap: false,
            displayGrid: 'onDrag&Resize' /*显示行和列的背景网格。选项：'永远' 缩放和拖拽时| 从不*/,
            pushItems: true,
-           enableEmptyCellDrop: true,
+           enableEmptyCellDrop: true, // 启动拖拽添加
            emptyCellDropCallback: this.emptyCellClick.bind(this),
+
+        enableOccupiedCellDrop: true, // 从第一个开启拖拽添加会有问题，如果不开启
+        emptyCellDragCallback: this.emptyCellClick.bind(this),
+
+
        };
-       this.dashboard = [
-        {
-          'label': 'item1',
-          view: { cols: 2, rows: 1, y: 0, x: 0, id: 'demo1', hasContent: true },
-          x: 0,
-          y: 0,
-          rows: 1,
-          cols: 2
-        },
-        {
-          'label': 'item2',
-          view: { cols: 2, rows: 2, y: 0, x: 2, id: 'demo2' },
-          x: 2,
-          y: 0,
-          rows: 2,
-          cols: 2
-        },
-        {
-          'label': 'item3',
-          view: { cols: 1, rows: 1, y: 0, x: 4, id: 'demo3' },
-          x: 4,
-          y: 0,
-          rows: 1,
-          cols: 1
-        },
-        {
-          'label': 'item4',
-          view: { cols: 1, rows: 1, y: 0, x: 5, id: 'demo4' },
-          x: 5,
-          y: 0,
-          rows: 1,
-          cols: 1
-        },
-        {
-          'label': 'item5',
-          view: { cols: 1, rows: 1, y: 1, x: 0, id: 'demo5' },
-          x: 0,
-          y: 1,
-          rows: 1,
-          cols: 1
-        },
-        {
-          'label': 'item6',
-          view: { cols: 1, rows: 1, y: 1, x: 1, id: 'demo6' },
-          x: 1,
-          y: 1,
-          rows: 1,
-          cols: 1
-        },
-        {
-          'label': 'item7',
-          view: { cols: 2, rows: 2, y: 1, x: 5, label: 'Min rows & cols = 2', id: 'demo7' },
-          x: 5,
-          y: 1,
-          rows: 2,
-          cols: 2
-        },
-        {
-          'label': 'item8',
-          view: { cols: 2, rows: 2, y: 2, x: 0, label: 'Max rows & cols = 2', id: 'demo8' },
-          x: 0,
-          y: 2,
-          rows: 2,
-          cols: 2
-        }
-      ];
-      //  this.dashboard =[
-      //    {'label':'item1',
-      //      view:{cols: 2, rows: 1, y: 0, x: 0,id:"demo1",hasContent: true,},
-      //    },
-      //    {'label':'item2',
-      //      view:{cols: 2, rows: 2, y: 0, x: 2,id:"demo2"},
-      //    },
-      //    {'label':'item3',
-      //      view:{cols: 1, rows: 1, y: 0, x: 4,id:"demo3"},
-      //    },
-      //    {'label':'item4',
-      //      view:{cols: 1, rows: 1, y: 0, x: 5,id:"demo4"},
-      //    },
-      //    {'label':'item5',
-      //      view:{cols: 1, rows: 1, y: 1, x: 0,id:"demo5"},
-      //    },
-      //    {'label':'item6',
-      //      view:{cols: 1, rows: 1, y: 1, x: 1,id:"demo6"},
-      //    },
-      //    {'label':'item7',
-      //      view:{cols: 2, rows: 2, y: 1, x: 5, label: 'Min rows & cols = 2',id:"demo7"},
-      //      //view:{cols: 2, rows: 2, y: 1, x: 5, minItemRows: 2, minItemCols: 2, label: 'Min rows & cols = 2'},
-      //    },
-      //    {'label':'item8',
-      //      //view:{cols: 2, rows: 2, y: 2, x: 0, maxItemRows: 2, maxItemCols: 2, label: 'Max rows & cols = 2'},
-      //      view:{cols: 2, rows: 2, y: 2, x: 0, label: 'Max rows & cols = 2',id:"demo8"},
-      //    },
-      //    // {'label':'item9',
-      //    //   view:{cols: 2, rows: 1, y: 2, x: 2, dragEnabled: true, resizeEnabled: true, label: 'Drag&Resize Enabled'},
-      //    // },
-      //    // {'label':'item10',
-      //    //   view:{cols: 1, rows: 1, y: 2, x: 4, dragEnabled: true, resizeEnabled: true, label: 'Drag&Resize Disabled'},
-      //    // },
-      //    // {'label':'item11',
-      //    //   view:{cols: 1, rows: 1, y: 0, x: 6},
-      //    // },
-      //  ];
+      //  this.dashboard = [
+      //   {
+      //     'label': 'item1',
+      //     view: { cols: 2, rows: 1, y: 0, x: 0, id: 'demo1', hasContent: true },
+      //     x: 0,
+      //     y: 0,
+      //     rows: 1,
+      //     cols: 2
+      //   },
+      //   {
+      //     'label': 'item2',
+      //     view: { cols: 2, rows: 2, y: 0, x: 2, id: 'demo2' },
+      //     x: 2,
+      //     y: 0,
+      //     rows: 2,
+      //     cols: 2
+      //   },
+      //   {
+      //     'label': 'item3',
+      //     view: { cols: 1, rows: 1, y: 0, x: 4, id: 'demo3' },
+      //     x: 4,
+      //     y: 0,
+      //     rows: 1,
+      //     cols: 1
+      //   },
+      //   {
+      //     'label': 'item4',
+      //     view: { cols: 1, rows: 1, y: 0, x: 5, id: 'demo4' },
+      //     x: 5,
+      //     y: 0,
+      //     rows: 1,
+      //     cols: 1
+      //   },
+      //   {
+      //     'label': 'item5',
+      //     view: { cols: 1, rows: 1, y: 1, x: 0, id: 'demo5' },
+      //     x: 0,
+      //     y: 1,
+      //     rows: 1,
+      //     cols: 1
+      //   },
+      //   {
+      //     'label': 'item6',
+      //     view: { cols: 1, rows: 1, y: 1, x: 1, id: 'demo6' },
+      //     x: 1,
+      //     y: 1,
+      //     rows: 1,
+      //     cols: 1
+      //   },
+      //   {
+      //     'label': 'item7',
+      //     view: { cols: 2, rows: 2, y: 1, x: 5, label: 'Min rows & cols = 2', id: 'demo7' },
+      //     x: 5,
+      //     y: 1,
+      //     rows: 2,
+      //     cols: 2
+      //   },
+      //   {
+      //     'label': 'item8',
+      //     view: { cols: 2, rows: 2, y: 0, x: 0, label: 'Max rows & cols = 2', id: 'demo8' },
+      //     x: 0,
+      //     y: 2,
+      //     rows: 2,
+      //     cols: 2
+      //   }
+      // ];
+       this.dashboard =[];
    }
    ngAfterViewInit(){
        let fullscreen = document.getElementById('fullscreen');
@@ -331,18 +340,25 @@ export class TemplateComponent implements OnInit{
        }
    }
    /*初始化*/
-   onChartInit(e: any,i:number) {
+   onChartInit(e: any,chat:String) {
        //console.log(i);
-       if( i===1 ){
+       if( chat=== 'echarts1' ){
            this.echartsInstance1 = e;
-       }else if( i===2 ){
+       }else if( chat=== 'echarts2' ){
            this.echartsInstance2 = e;
        }
-       //console.log('on chart init:', e);
+
+
    }
    removeItem(event?: any,item?: GridsterItem | undefined) {
     if (item) {
+      console.log(item)
       this.dashboard.splice(this.dashboard.indexOf(item), 1);
+      this.stats.forEach(e => {
+        if (e.id == item['view'].id) {
+          e.enable = true;
+        }
+      })
     }
    }
 
@@ -414,9 +430,23 @@ export class TemplateComponent implements OnInit{
    }
 
    emptyCellClick(event: MouseEvent, item: GridsterItem): void {
-    console.info('empty cell click', event, item);
-    item['label'] = "test";
-    item['view'] = { cols: 2, rows: 2, y: 2, x: 0, label: 'Max rows & cols = 2', id: 'demo8' };
+    item['label'] = this.selectedWeight.title;
+    this.stats.filter(e => {
+      if (e.id == this.selectedWeight.id) {
+        e.enable = false;
+      }
+    })
+    item['view'] = {...item, id: this.selectedWeight.id };
+    console.log(item)
     this.dashboard.push(item);
+  }
+
+  dragStartHandler(ev: DragEvent, data: any): void {
+    this.selectedWeight = data;
+    // if (ev.dataTransfer) {
+    //   ev.dataTransfer.setData('text/plain', 'Drag Me Button');
+    //   ev.dataTransfer.dropEffect = 'copy';
+    //   console.log(ev)
+    // }
   }
 }

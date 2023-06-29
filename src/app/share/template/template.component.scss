@@ -1,3 +1,33 @@
+@use "@angular/material" as mat;
+@import "/src//assets//scss//themecolors/default_theme";
+
 gridster.fit {
   background: none;
+}
+gridster-item {
+  padding: 5px;
+}
+.demo-chart {
+  width: 100%;
+  padding: 5px;
+}
+.template {
+  display: flex;
+}
+#gridster {
+  flex: 1;
+  border: 1px dashed rgb(224, 224, 224);
+}
+.list-chart {
+  width: 300px;
+  margin-left: 24px;
+}
+.enable {
+  opacity: 0.5;
+}
+.delete-ioc {
+  float: right;
+}
+.delete-ioc:hover {
+  color: mat.get-color-from-palette($theme-primary, 500);
 }

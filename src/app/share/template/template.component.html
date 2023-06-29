@@ -12,13 +12,13 @@
   </div>
 </div>
 
-<div [style.height]="gridsterContainerHeight" >
+<div [style.height]="gridsterContainerHeight" class="template">
 <!--ignoreContentClass: 'gridster-item-content', // default content class to ignore the drag event from -->
-<gridster [options]="options" style="height:650px;"  id="gridster">
+<gridster [options]="options"   id="gridster">
   <gridster-item [item]="item['view']" *ngFor="let item of dashboard;let i =index;">
     <!-- your content here -->
-    <div class="fs-md" style="padding-top:  5px;">
-        <label class="item-label gridster-item-content">{{item['label']}}</label>
+    <!-- <div class="fs-md" style="padding-top:  5px;"> -->
+        <!-- <label class="item-label gridster-item-content">{{item['label']}}</label>
         <div style="position:absolute;top: 0px;right:0px;">
 
             <div class="float-right pr-10 hand gridster-item-content" style="cursor: pointer;padding-right: 10px;" (click)="zoomItem($event, item)"
@@ -36,7 +36,6 @@
                 <em class="fa fa-arrows" title="拖拽"></em>
             </div>
         </div>
-
       <div [ngSwitch]="i+1"  class="gridster-item-content">
         <div   *ngSwitchCase="'1'">
             <div echarts [options]="echartsOption1" class="demo-chart" (chartInit)="onChartInit($event,i+1)" id="demo1" ></div>
@@ -62,17 +61,76 @@
         <div   *ngSwitchCase="'8'">
           item content {{i+1}}
         </div>
-      </div>
+      </div> -->
 
-    </div>
+      <mat-card class="cardWithShadow" style="width:100%;height:100%">
+        <mat-card-content class="p-y-30" style="width:100%;height:100%">
+          <mat-card-title>
+            {{item['label']}}
+            <a
+            (click)="removeItem($event, item)"
+            (touchstart)="removeItem($event, item)" mdTooltip="Remove"
+              class="m-r-10 cursor-pointer delete-ioc"
+            >
+              <i-tabler name="trash" class="icon-18"></i-tabler>
+            </a>
+          </mat-card-title>
+          <div [ngSwitch]="item['view']['id']"  class="gridster-item-content">
+            <div   *ngSwitchCase="'echarts1'">
+              <div echarts [options]="echartsOption1" class="demo-chart" (chartInit)="onChartInit($event,'echarts1')" id="echarts1" ></div>
+            </div>
+            <div   *ngSwitchCase="'echarts2'" >
+                <div echarts [options]="echartsOption2" class="demo-chart" (chartInit)="onChartInit($event,'echarts2')"  id="echarts2"></div>
+            </div>
+            <div *ngSwitchCase="'echarts3'">
+              <app-line></app-line>
+            </div>
+
+          </div>
+        </mat-card-content>
+      </mat-card>
+    <!-- </div> -->
 
   </gridster-item>
 </gridster>
-    <div
+<div class="list-chart">
+  <!-- <div
       draggable="true"
       >
       Drag me!
-    </div>
+    </div> -->
+    <mat-card class="cardWithShadow">
+      <mat-card-content class="p-y-24">
+        <mat-card-title>Weight List</mat-card-title>
+        <!-- <mat-card-subtitle class="mat-body-1 p-b-16"
+          >Weight List</mat-card-subtitle
+        > -->
+
+        <div *ngFor="let stat of stats" class="m-t-32" [draggable]="stat.enable" (dragstart)="dragStartHandler($event, stat)"
+        [ngClass]="{'enable': !stat.enable}">
+          <div class="d-flex align-items-center m-b-24">
+            <span
+              class="text-{{ stat.color }} bg-light-{{
+                stat.color
+              }} rounded icon-40 d-flex align-items-center justify-content-center"
+            >
+              <img [src]="stat.img" alt="icon" />
+            </span>
+
+            <div class="m-l-16 m-r-auto">
+              <h6 class="mat-body-2 f-w-600">{{ stat.title }}</h6>
+              <span class="mat-body-1">{{ stat.subtitle }}</span>
+            </div>
+            <span class="f-w-600 f-s-14"> {{ stat.percent }} </span>
+          </div>
+        </div>
+
+        <!-- <button mat-stroked-button color="primary" class="w-100 m-t-8">
+          View all Transctions
+        </button> -->
+      </mat-card-content>
+    </mat-card>
+</div>
 </div>
 
 

@@ -27,7 +27,7 @@ import { AppRadialRadarChartComponent } from './radial-radar/radial-radar.compon
     AppColumnChartComponent,
     AppDoughnutpieChartComponent,
     AppGredientChartComponent,
-    AppLineChartComponent,
+    // AppLineChartComponent,
     AppRadialRadarChartComponent,
   ],
   exports: [TablerIconsModule],
