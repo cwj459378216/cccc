@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 
 @Component({
   selector: 'app-settings-widgets',
@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./settings-widgets.component.scss']
 })
 export class SettingsWidgetsComponent {
+
+
+
 
 }

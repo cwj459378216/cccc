@@ -13,6 +13,8 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 import { AppLineChartComponent } from './charts/line/line.component';
 import { SettingsWidgetsComponent } from './settings-widgets/settings-widgets.component';
+import { DataTablesModule } from 'angular-datatables';
+import { ListTableComponent } from '../share/list-table/list-table.component';
 
 
 
@@ -21,6 +23,7 @@ import { SettingsWidgetsComponent } from './settings-widgets/settings-widgets.co
         DashboardComponent,
         TemplateComponent,
         SettingsWidgetsComponent,
+        ListTableComponent,
     ],
     imports: [
         CommonModule,
@@ -36,6 +39,7 @@ import { SettingsWidgetsComponent } from './settings-widgets/settings-widgets.co
       TablerIconsModule.pick(TablerIcons),
       AppLineChartComponent,
       ReactiveFormsModule,
+      DataTablesModule
 
     ]
 })
