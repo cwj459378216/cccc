@@ -83,7 +83,7 @@
                 <div echarts [options]="echartsOption2" class="demo-chart" (chartInit)="onChartInit($event,'echarts2')"  id="echarts2"></div>
             </div>
             <div *ngSwitchCase="'echarts3'">
-              <app-line></app-line>
+              <app-line #lineChat></app-line>
             </div>
 
           </div>

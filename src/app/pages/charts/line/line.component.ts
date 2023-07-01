@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import {
   ApexAxisChartSeries,
   ApexChart,
@@ -40,7 +40,9 @@ export type ChartOptions = {
   templateUrl: './line.component.html',
 })
 export class AppLineChartComponent {
-  @ViewChild('chart') chart: ChartComponent = Object.create(null);
+  @ViewChild(ChartComponent) chart: ChartComponent;
+  // @ViewChild('chart') chart: ChartComponent;
+
   public lineChartOptions: Partial<ChartOptions> | any;
 
   constructor() {
@@ -111,5 +113,15 @@ export class AppLineChartComponent {
         theme: 'dark',
       },
     };
+  }
+
+  ngAfterViewInit() {
+    this.resizeChart();
+  }
+
+  resizeChart() {
+    if (this.chart && this.chart['chartObj']) {
+      this.chart['chartObj'].updateOptions(this.lineChartOptions);
+    }
   }
 }

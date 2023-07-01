@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { StarterComponent } from './starter/starter.component';
-import { ChatSettingsComponent } from './chat-settings/chat-settings.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { SettingsWidgetsComponent } from './settings-widgets/settings-widgets.component';
 
 export const PagesRoutes: Routes = [
   {
@@ -12,10 +12,10 @@ export const PagesRoutes: Routes = [
     }
   },
   {
-    path: 'chat-settings',
-    component: ChatSettingsComponent,
+    path: 'settings-widgets',
+    component: SettingsWidgetsComponent,
     data: {
-      title: 'Chat Settings',
+      title: 'Settings Widgets',
     }
   },
   {
@@ -24,5 +24,5 @@ export const PagesRoutes: Routes = [
     data: {
       title: 'Dashboard',
     }
-  },
+  }
 ];

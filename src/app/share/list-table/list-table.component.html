@@ -1,0 +1,67 @@
+<div [ngClass]="{'col-xl-12': hideTable}" style="height: 100%;">
+    <smart-panel [collapsible]="false" [fullscreenable]="fullscreenable" class={{titleID}} [clossable]="false" [setting]="showSettingBtn"  id="list-panel" >
+        <h2 panelTitle *ngIf="title1">
+            <div class="mar-font ">{{title1}}</div>
+        </h2>
+        <h2 panelTitle class="justify-content-between" *ngIf="!showHead">
+            <div class="mar-font ">{{title}}</div>
+        </h2>
+        <h2 panelTitle class="justify-content-between" >
+        </h2>
+        
+        <div panelContent class="mar-list-table" [ngClass]="{visibility: visibility, listAppend: listAppend }">
+
+            
+            <ng-content select=".list-table-header">
+
+            </ng-content>
+            <div class="mar-search" [ngClass]="{'position-absolute': showExportBtn && !visibility, 'search-bar-adjust': !showExportBtn }" style="display: flex;justify-content: start;margin-top: -10px;z-index: 99;">
+                <nav class="navbar navbar-expand-lg navbar-light" style="padding-left: 0;" [id]="'searchid' + random">
+                    <div *ngIf="!hideDefaultSearch" class="d-flex position-relative ml-auto" style="max-width: 19rem;margin-right: 12px;">
+                        <i class="fal fa-search position-absolute pos-left fs-lg px-3 py-2 mt-1" style="z-index: 200;"></i>
+                        <div class="input-group">
+                            <input type="text" [value]="searchText || ''" (keyup)="handleKeyup($event)" class="form-control pl-6 input1" style="background-color: transparent;"  placeholder="{{('LISTTABLE.Search') | translate: {Default: (newBtbText || 'Search')} }}"
+                                >
+                            <div class="input-group-append" *ngIf="showIPSearch">
+                                <div class="input-group-text">
+                                    <div class="custom-control custom-checkbox">
+                                        <input [disabled]="monitoring" (change)="handleChangeIPGlobal($event)" type="checkbox" class="custom-control-input" [id]="'ip' + random" [(ngModel)]="globalSearch" name="globalSearch">
+                                        <label class="custom-control-label" [for]="'ip' + random">{{'SETTING.IP Global Search'  | translate}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-success my-2 my-sm-0" *ngIf="showNewBtn && permissions" type="submit"
+                        (click)="openModal($event)">
+                        {{(newBtbText || 'LISTTABLE.NEW') | translate: {Default: (newBtbText || 'New')} }}
+                    </button>
+
+                    <button class="btn btn-outline-success my-2 my-sm-0 list-buttons import-csv" *ngIf="showImportButton && permissions" type="submit"
+                            style="margin-left: 12px;" >
+                            {{(newBtbText || 'LISTTABLE.CSV Import') | translate: {Default: (newBtbText || 'CSV Import')} }}
+                        <input type="file" class="custom-file-input" [id]="'import-csv' + random" style="display: none;">
+                    </button>
+                    <ng-content select=".list-buttons" *ngIf="permissions"></ng-content>
+                </nav>
+            </div>
+
+            <ng-content select=".table-append"></ng-content>       
+            <table datatable  [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                class="table table-sm table-bordered table-hover table-striped w-100 dataTable dtr-inline" role="grid"
+                aria-describedby="dt-basic-example_info" [id]=" tableId || 'tableid' + random">
+                <thead [ngClass]="{'bg-primary-500': !dtOptions.responsive, 'bg-warning-200': true}" >
+                    <ng-content select=".header-content"></ng-content>
+                </thead>
+            </table>
+
+
+            <ng-content select=".list-table-footer">
+
+            </ng-content>
+
+        </div>
+
+    </smart-panel>
+
+</div>

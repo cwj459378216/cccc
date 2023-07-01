@@ -64,12 +64,12 @@ import {
 } from './ticketlist/ticketlist.component';
 
 //Invoice
-import { AppInvoiceListComponent } from './invoice/invoice-list/invoice-list.component';
-import { AppInvoiceViewComponent } from './invoice/invoice-view/invoice-view.component';
-import { AppAddInvoiceComponent } from './invoice/add-invoice/add-invoice.component';
-import { AppEditInvoiceComponent } from './invoice/edit-invoice/edit-invoice.component';
-import { OkDialogComponent } from './invoice/edit-invoice/ok-dialog/ok-dialog.component';
-import { AddedDialogComponent } from './invoice/add-invoice/added-dialog/added-dialog.component';
+// import { AppInvoiceListComponent } from './invoice/invoice-list/invoice-list.component';
+// import { AppInvoiceViewComponent } from './invoice/invoice-view/invoice-view.component';
+// import { AppAddInvoiceComponent } from './invoice/add-invoice/add-invoice.component';
+// import { AppEditInvoiceComponent } from './invoice/edit-invoice/edit-invoice.component';
+// import { OkDialogComponent } from './invoice/edit-invoice/ok-dialog/ok-dialog.component';
+// import { AddedDialogComponent } from './invoice/add-invoice/added-dialog/added-dialog.component';
 
 // blog
 import { AppBlogsComponent } from './blogs/blogs.component';
@@ -123,12 +123,12 @@ import { AppBlogDetailsComponent } from './blogs/details/details.component';
     AppEmployeeComponent,
     AppEmployeeDialogContentComponent,
     AppAddEmployeeComponent,
-    AppInvoiceListComponent,
-    AppInvoiceViewComponent,
-    AppAddInvoiceComponent,
-    AppEditInvoiceComponent,
-    AddedDialogComponent,
-    OkDialogComponent,
+    // AppInvoiceListComponent,
+    // AppInvoiceViewComponent,
+    // AppAddInvoiceComponent,
+    // AppEditInvoiceComponent,
+    // AddedDialogComponent,
+    // OkDialogComponent,
     AppBlogsComponent,
     AppBlogDetailsComponent,
   ],

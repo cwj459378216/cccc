@@ -24,7 +24,6 @@ import { FilterPipe } from './pipe/filter.pipe';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { ShareModule } from './share/share.module';
 
 export function HttpLoaderFactory(http: HttpClient): any {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -50,7 +49,7 @@ export function HttpLoaderFactory(http: HttpClient): any {
     }),
     NgScrollbarModule,
     FullComponent,
-    ShareModule
+
   ],
   exports: [TablerIconsModule],
   bootstrap: [AppComponent],

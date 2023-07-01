@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import {GridsterComponent, GridsterConfig,GridsterItem } from "angular-gridster2";
+import { AppLineChartComponent } from 'src/app/pages/charts/line/line.component';
 
 
 @Component({
@@ -25,6 +26,8 @@ export class TemplateComponent implements OnInit{
   static itemResize(item: any, itemComponent: any) {
     console.info('itemResized', item, itemComponent);
   }
+  // @ViewChild('lineChat') lineChat: AppLineChartComponent;
+
   public stats = [
     {
       id: "echarts1",
@@ -198,6 +201,10 @@ export class TemplateComponent implements OnInit{
                    let a = {"echarts1":self.echartsInstance1,"echarts2":self.echartsInstance2} as any;
                    a[item['id']].resize();
                }
+              //  if (self.lineChat) {
+              //   console.log(self)
+              //   self.lineChat.resizeChart();
+              //  }
                console.log('itemChangeCallback', item, itemComponent);
            },
            itemResizeCallback:function (item, itemComponent){
@@ -220,6 +227,10 @@ export class TemplateComponent implements OnInit{
                     a[item['id']].resize();
                    },1000);
                }
+              //  if (self.lineChat) {
+              //   console.log(self)
+              //   self.lineChat.resizeChart();
+              //  }
                    //console.log('itemResize', item, itemComponent);
                console.log('itemResizeCallback', item, itemComponent);
            },

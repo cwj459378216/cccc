@@ -10,9 +10,9 @@ export const navItems: NavItem[] = [
     route: '/starter/dashboard',
   },
   {
-    displayName: 'Chat Settings',
+    displayName: 'Settings Widgets',
     iconName: 'aperture',
-    route: '/starter/chat-settings',
+    route: '/starter/settings-widgets',
   },
   {
     displayName: 'Analytical',
