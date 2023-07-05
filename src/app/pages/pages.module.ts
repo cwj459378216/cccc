@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { StarterComponent } from './starter/starter.component';
 import { PagesRoutes } from './pages.routing.module';
 import { MaterialModule } from '../material.module';
@@ -15,6 +15,7 @@ import { AppLineChartComponent } from './charts/line/line.component';
 import { SettingsWidgetsComponent } from './settings-widgets/settings-widgets.component';
 import { DataTablesModule } from 'angular-datatables';
 import { ListTableComponent } from '../share/list-table/list-table.component';
+import { FromComponent } from '../share/list-table/from/from.component';
 
 
 
@@ -24,6 +25,7 @@ import { ListTableComponent } from '../share/list-table/list-table.component';
         TemplateComponent,
         SettingsWidgetsComponent,
         ListTableComponent,
+        FromComponent
     ],
     imports: [
         CommonModule,
@@ -41,6 +43,8 @@ import { ListTableComponent } from '../share/list-table/list-table.component';
       ReactiveFormsModule,
       DataTablesModule
 
-    ]
+    ],
+    providers: [DatePipe],
+
 })
 export class PagesModule {}

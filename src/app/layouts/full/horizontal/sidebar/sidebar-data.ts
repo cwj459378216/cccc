@@ -19,6 +19,16 @@ export const navItems: NavItem[] = [
         iconName: 'point',
         route: 'dashboards/dashboard2',
       },
+      {
+        displayName: 'Dashboard1',
+        iconName: 'aperture',
+        route: '/starter/dashboard',
+      },
+      {
+        displayName: 'Settings Widgets',
+        iconName: 'aperture',
+        route: '/starter/settings-widgets',
+      },
     ],
   },
   {

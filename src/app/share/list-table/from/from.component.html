@@ -1,0 +1,129 @@
+<h2 class="f-w-500 m-b-24" mat-dialog-title><strong>{{action}}</strong></h2>
+<mat-dialog-content
+  *ngIf="action !== 'Delete'; else elseTemplate"
+>
+  <form #userForm="ngForm">
+    <div class="row">
+      <div class="col-sm-3 d-flex align-items-center">
+        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-24"
+          >Chart
+        </mat-label>
+      </div>
+      <div class="col-sm-9">
+        <mat-form-field appearance="outline" class="w-100">
+          <input
+            type="text"
+            matInput
+            required
+            id="chart"
+            name="chart"
+            [(ngModel)]="local_data.chart"
+            placeholder="chart"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3 d-flex align-items-center">
+        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-24"
+          >Dataset
+        </mat-label>
+      </div>
+      <div class="col-sm-9">
+        <form [formGroup]="stateForm">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Dataset</mat-label>
+            <input
+              type="text"
+              matInput
+              formControlName="stateGroup"
+              required
+              [matAutocomplete]="autoGroup"
+              id="dataset"
+              name="dataset"
+              [(ngModel)]="local_data.dataset"
+            />
+            <mat-autocomplete #autoGroup="matAutocomplete">
+              <mat-optgroup
+                *ngFor="let group of stateGroupOptions | async"
+                [label]="group.letter"
+              >
+                <mat-option *ngFor="let name of group.names" [value]="name">
+                  {{ name }}
+                </mat-option>
+              </mat-optgroup>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3 d-flex align-items-center">
+        <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-24"
+          >Visualization type
+        </mat-label>
+      </div>
+      <div class="col-sm-9">
+        <form>
+          <mat-form-field class="w-100" appearance="outline">
+            <mat-label>Visualization type</mat-label>
+            <input
+              matInput
+              aria-label="State"
+              [matAutocomplete]="auto2"
+              [formControl]="stateCtrl"
+              id="visualizationType"
+              name="visualizationType"
+              [(ngModel)]="local_data.visualizationType"
+            />
+            <mat-autocomplete #auto2="matAutocomplete">
+              <mat-option
+                *ngFor="let state of filteredStates | async"
+                [value]="state.name"
+                class="d-flex align-items-center"
+              >
+                <img alt="" class="m-r-8" [src]="state.flag" height="25" />
+
+                <span>{{ state.name }}</span> |
+                <small>Population: {{ state.population }}</small>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+
+  </form>
+
+  <button
+  mat-flat-button
+  (click)="doAction()"
+  mat-flat-button
+  color="primary"
+  [disabled]="!userForm.valid || !this.local_data.dataset || !local_data.visualizationType"
+>
+
+  {{action}}
+</button>
+<button
+  mat-stroked-button
+  color="warn"
+  class="m-l-8"
+  (click)="closeDialog()"
+>
+  Cancel
+</button>
+</mat-dialog-content>
+<ng-template #elseTemplate>
+  <div class="p-x-24">
+    <p>Sure to delete <span class="f-w-600">{{local_data.Name}}</span> ?</p>
+  </div>
+  <div mat-dialog-actions class="p-x-24 p-b-24">
+    <button mat-button (click)="doAction()" mat-flat-button color="warn">
+      {{action}}
+    </button>
+    <button mat-button (click)="closeDialog()" class="m-l-8">Cancel</button>
+  </div>
+</ng-template>
