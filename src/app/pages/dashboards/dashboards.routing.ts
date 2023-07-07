@@ -32,7 +32,7 @@ export const DashboardsRoutes: Routes = [
         },
       },
       {
-        path: 'dashboard',
+        path: 'dashboard3',
         component: DashboardComponent,
         data: {
           title: 'Dashboard',

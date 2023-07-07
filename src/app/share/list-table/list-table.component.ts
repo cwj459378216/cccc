@@ -121,8 +121,49 @@ export class ListTableComponent {
       this.datatableElement.dtInstance.then((datatableInstance: DataTables.Api) => {
         datatableInstance.clear();
         datatableInstance.rows.add(this.tableData);
+        /* 测试代码，后续要换成api*/
+        this.test(row_obj);
         datatableInstance.draw();
       });
+    }
+  }
+
+  test(row_obj: any) {
+    console.log(row_obj)
+    let testChartsList = localStorage.getItem("testChartsList");
+    if (testChartsList) {
+      const list = JSON.parse(testChartsList);
+      list.push(row_obj);
+      localStorage.setItem("testChartsList", JSON.stringify(list));
+    } else {
+      const arr = [];
+      arr.push(row_obj);
+      localStorage.setItem("testChartsList", JSON.stringify(arr));
+    }
+  }
+
+  testDel(row_obj: any) {
+    let testChartsList = localStorage.getItem("testChartsList");
+    if (testChartsList) {
+      const list = JSON.parse(testChartsList);
+      list.forEach((e: any) => {
+        if (e.chart == row_obj.chart) {
+          list.splice(list.indexOf(e), 1);
+        }
+      })
+      localStorage.setItem("testChartsList", JSON.stringify(list));
+      this.tableData.forEach(e => {
+        if (e.chart == row_obj.chart) {
+          this.tableData.splice(list.indexOf(e), 1);
+        }
+      })
+      if (this.datatableElement && this.datatableElement.dtInstance) {
+        this.datatableElement.dtInstance.then((datatableInstance: DataTables.Api) => {
+          datatableInstance.clear();
+          datatableInstance.rows.add(this.tableData);
+          datatableInstance.draw();
+        });
+      }
     }
   }
 
@@ -130,7 +171,7 @@ export class ListTableComponent {
   }
 
   deleteRowData(row_obj: any): boolean | any {
-
+    this.testDel(row_obj)
   }
 
   getTableData() {
@@ -158,10 +199,11 @@ export class ListTableComponent {
   }
 
   public deleteRow = (e: any) => {
+    let row = e.currentTarget.getAttribute('data-row');
     if (this.openCustomTemplate) {
       this.rowDelete.emit(e);
     } else {
-      this.openDialog('Delete', e);
+      this.openDialog('Delete', JSON.parse(row));
     }
   }
 

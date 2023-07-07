@@ -8,6 +8,9 @@ import { TablerIconsModule } from 'angular-tabler-icons';
 import { AppLineChartComponent } from 'src/app/pages/charts/line/line.component';
 import * as TablerIcons from 'angular-tabler-icons/icons';
 import { MaterialModule } from 'src/app/material.module';
+import { RouterModule } from '@angular/router';
+import { SettingsRoutes } from 'src/app/pages/settings/settings.routing.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,6 +28,10 @@ import { MaterialModule } from 'src/app/material.module';
       TablerIconsModule.pick(TablerIcons),
       MaterialModule,
       AppLineChartComponent,
+      RouterModule.forChild(SettingsRoutes),
+    FormsModule,
+
+
   ],
   exports: [
     TemplateComponent

@@ -19,34 +19,36 @@ export class WidgetsComponent {
           // 'https://xtlncifojk.eu07.qoddiapp.com/',
           // dataTablesParameters, {}
         ).subscribe(resp => {
-          let list = [
-            {
-              id: 0,
-              chart: "aplication",
-              visualizationType: "pie chart",
-              dataset: "omni-bro-conn",
-              queryBody: ""
-            },
-            {
-              id: 1,
-              chart: "ip martix",
-              visualizationType: "line chart",
-              dataset: "omni-bro-conn",
-              queryBody: ""
-            }
-          ]
+          // let list = [
+          //   {
+          //     id: 0,
+          //     chart: "aplication",
+          //     visualizationType: "pie chart",
+          //     dataset: "omni-bro-conn",
+          //     queryBody: ""
+          //   },
+          //   {
+          //     id: 1,
+          //     chart: "ip martix",
+          //     visualizationType: "line chart",
+          //     dataset: "omni-bro-conn",
+          //     queryBody: ""
+          //   }
+          // ]
+          let list = [];
+          const testChartsList = localStorage.getItem('testChartsList');
+          if (testChartsList) {
+            list = JSON.parse(testChartsList);
+          }
           callback({
-            recordsTotal: resp.recordsTotal,
-            recordsFiltered: resp.recordsFiltered,
+            // recordsTotal: resp.recordsTotal,
+            // recordsFiltered: resp.recordsFiltered,
             data: list
             // data: resp.data             // <-- see here
           });
         });
     }
     this.colums = [{
-      title: 'ID',
-      data: 'id'
-    }, {
       title: 'Chart',
       data: 'chart'
     }, {

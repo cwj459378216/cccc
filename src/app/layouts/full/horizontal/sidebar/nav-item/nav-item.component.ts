@@ -28,7 +28,11 @@ export class AppHorizontalNavItemComponent implements OnInit {
   ngOnInit() {}
   onItemSelected(item: any) {
     if (!item.children || !item.children.length) {
-      this.router.navigate([item.route]);
+      if (item.id) {
+        this.router.navigate([item.route], { queryParams: { id: item.id } });
+      } else {
+        this.router.navigate([item.route]);
+      }
     }
   }
 }

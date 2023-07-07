@@ -19,11 +19,12 @@ export const navItems: NavItem[] = [
         iconName: 'point',
         route: 'dashboards/dashboard2',
       },
-      {
-        displayName: 'Dashboard',
-        iconName: 'point',
-        route: '/dashboards/dashboard',
-      },
+      // {
+      //   displayName: 'Dashboard',
+      //   iconName: 'point',
+      //   route: 'dashboards/dashboard3',
+      //   id: ''
+      // },
     ],
   },
   {

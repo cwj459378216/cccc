@@ -12,6 +12,34 @@
   </div>
 </div>
 
+
+<mat-card class="cardWithShadow" *ngIf="disEdit">
+  <mat-card-content class="p-24">
+    <div class="row justify-content-between">
+      <div class="col-lg-4">
+        <mat-form-field appearance="outline" class="w-100 hide-hint">
+          <mat-label>Dashboard</mat-label>
+          <input matInput  placeholder="Dashboard" name="name" [(ngModel)]="name" />
+        </mat-form-field>
+      </div>
+      <div class="col-lg-4 d-flex align-items-center justify-content-end" >
+        <a
+            routerLink="/settings/dashboard"
+            mat-stroked-button
+            color="warn"
+            class="m-r-10"
+          >
+            Cancel
+          </a>
+        <button mat-flat-button  color="primary" [disabled]="!name" (click)="saveDashboard()">
+          Saves
+        </button>
+      </div>
+
+    </div>
+  </mat-card-content>
+</mat-card>
+
 <div [style.height]="gridsterContainerHeight"  [ngClass]="{'disEdit': !disEdit, 'template': true}">
 <!--ignoreContentClass: 'gridster-item-content', // default content class to ignore the drag event from -->
 <gridster [options]="options"   id="gridster">
@@ -76,16 +104,13 @@
               <i-tabler name="trash" class="icon-18"></i-tabler>
             </a>
           </mat-card-title>
-          <div [ngSwitch]="item['view']['id']"  class="gridster-item-content">
-            <div   *ngSwitchCase="'echarts1'">
-              <div echarts [options]="echartsOption1" class="demo-chart" (chartInit)="onChartInit($event,'echarts1')" id="echarts1" ></div>
+          <div [ngSwitch]="item['view']['type']"  class="gridster-item-content">
+            <div   *ngSwitchCase="'echarts'">
+              <div echarts [options]="item['view']['option']" class="demo-chart" (chartInit)="onChartInit($event,item['view']['type'] + item['view']['label'])" [id]="item['view']['type'] + item['view']['label']" ></div>
             </div>
-            <div   *ngSwitchCase="'echarts2'" >
-                <div echarts [options]="echartsOption2" class="demo-chart" (chartInit)="onChartInit($event,'echarts2')"  id="echarts2"></div>
-            </div>
-            <div *ngSwitchCase="'echarts3'">
+            <!-- <div *ngSwitchCase="'echarts3'">
               <app-line #lineChat></app-line>
-            </div>
+            </div> -->
 
           </div>
         </mat-card-content>
@@ -115,7 +140,7 @@
                 stat.color
               }} rounded icon-40 d-flex align-items-center justify-content-center"
             >
-              <img [src]="stat.img" alt="icon" />
+              <img [src]="stat.img" width="30px" alt="icon" />
             </span>
 
             <div class="m-l-16 m-r-auto">

@@ -19,99 +19,99 @@ export class FromComponent {
   joiningDate: any = '';
   stateGroups: any[] = [
     {
-      letter: 'A',
-      names: ['Alabama', 'Alaska', 'Arizona', 'Arkansas'],
-    },
-    {
       letter: 'C',
-      names: ['California', 'Colorado', 'Connecticut'],
-    },
-    {
-      letter: 'D',
-      names: ['Delaware'],
-    },
-    {
-      letter: 'F',
-      names: ['Florida'],
-    },
-    {
-      letter: 'G',
-      names: ['Georgia'],
+      names: ['conn', 'conn-realtime', 'conn-pcap'],
     },
     {
       letter: 'H',
-      names: ['Hawaii'],
+      names: ['http', 'http-realtime', 'http-pcap'],
     },
-    {
-      letter: 'I',
-      names: ['Idaho', 'Illinois', 'Indiana', 'Iowa'],
-    },
-    {
-      letter: 'K',
-      names: ['Kansas', 'Kentucky'],
-    },
-    {
-      letter: 'L',
-      names: ['Louisiana'],
-    },
-    {
-      letter: 'M',
-      names: [
-        'Maine',
-        'Maryland',
-        'Massachusetts',
-        'Michigan',
-        'Minnesota',
-        'Mississippi',
-        'Missouri',
-        'Montana',
-      ],
-    },
-    {
-      letter: 'N',
-      names: [
-        'Nebraska',
-        'Nevada',
-        'New Hampshire',
-        'New Jersey',
-        'New Mexico',
-        'New York',
-        'North Carolina',
-        'North Dakota',
-      ],
-    },
-    {
-      letter: 'O',
-      names: ['Ohio', 'Oklahoma', 'Oregon'],
-    },
-    {
-      letter: 'P',
-      names: ['Pennsylvania'],
-    },
-    {
-      letter: 'R',
-      names: ['Rhode Island'],
-    },
-    {
-      letter: 'S',
-      names: ['South Carolina', 'South Dakota'],
-    },
-    {
-      letter: 'T',
-      names: ['Tennessee', 'Texas'],
-    },
-    {
-      letter: 'U',
-      names: ['Utah'],
-    },
-    {
-      letter: 'V',
-      names: ['Vermont', 'Virginia'],
-    },
-    {
-      letter: 'W',
-      names: ['Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
-    },
+    // {
+    //   letter: 'D',
+    //   names: ['Delaware'],
+    // },
+    // {
+    //   letter: 'F',
+    //   names: ['Florida'],
+    // },
+    // {
+    //   letter: 'G',
+    //   names: ['Georgia'],
+    // },
+    // {
+    //   letter: 'H',
+    //   names: ['Hawaii'],
+    // },
+    // {
+    //   letter: 'I',
+    //   names: ['Idaho', 'Illinois', 'Indiana', 'Iowa'],
+    // },
+    // {
+    //   letter: 'K',
+    //   names: ['Kansas', 'Kentucky'],
+    // },
+    // {
+    //   letter: 'L',
+    //   names: ['Louisiana'],
+    // },
+    // {
+    //   letter: 'M',
+    //   names: [
+    //     'Maine',
+    //     'Maryland',
+    //     'Massachusetts',
+    //     'Michigan',
+    //     'Minnesota',
+    //     'Mississippi',
+    //     'Missouri',
+    //     'Montana',
+    //   ],
+    // },
+    // {
+    //   letter: 'N',
+    //   names: [
+    //     'Nebraska',
+    //     'Nevada',
+    //     'New Hampshire',
+    //     'New Jersey',
+    //     'New Mexico',
+    //     'New York',
+    //     'North Carolina',
+    //     'North Dakota',
+    //   ],
+    // },
+    // {
+    //   letter: 'O',
+    //   names: ['Ohio', 'Oklahoma', 'Oregon'],
+    // },
+    // {
+    //   letter: 'P',
+    //   names: ['Pennsylvania'],
+    // },
+    // {
+    //   letter: 'R',
+    //   names: ['Rhode Island'],
+    // },
+    // {
+    //   letter: 'S',
+    //   names: ['South Carolina', 'South Dakota'],
+    // },
+    // {
+    //   letter: 'T',
+    //   names: ['Tennessee', 'Texas'],
+    // },
+    // {
+    //   letter: 'U',
+    //   names: ['Utah'],
+    // },
+    // {
+    //   letter: 'V',
+    //   names: ['Vermont', 'Virginia'],
+    // },
+    // {
+    //   letter: 'W',
+    //   names: ['Washington', 'West Virginia', 'Wisconsin', 'Wyoming'],
+    // },
   ];
 
   stateGroupOptions: Observable<any[]>;
@@ -126,29 +126,295 @@ export class FromComponent {
   filteredStates: Observable<any[]>;
   states: any[] = [
     {
-      name: 'Arkansas',
-      population: '2.978M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_Arkansas.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/9/9d/Flag_of_Arkansas.svg',
+      name: 'Basic Line Chart',
+      flag: 'assets/images/echarts/BasicLineChart.png',
+      option: {
+        xAxis: {
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            data: [150, 230, 224, 218, 135, 147, 260],
+            type: 'line'
+          }
+        ]
+      }
     },
     {
-      name: 'California',
-      population: '39.14M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_California.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/0/01/Flag_of_California.svg',
+      name: 'Stacked Line Chart',
+      flag: 'assets/images/echarts/StackedLineChart.png',
+      option: {
+        title: {
+          text: 'Stacked Line'
+        },
+        tooltip: {
+          trigger: 'axis'
+        },
+        legend: {
+          data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {}
+          }
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            name: 'Email',
+            type: 'line',
+            stack: 'Total',
+            data: [120, 132, 101, 134, 90, 230, 210]
+          },
+          {
+            name: 'Union Ads',
+            type: 'line',
+            stack: 'Total',
+            data: [220, 182, 191, 234, 290, 330, 310]
+          },
+          {
+            name: 'Video Ads',
+            type: 'line',
+            stack: 'Total',
+            data: [150, 232, 201, 154, 190, 330, 410]
+          },
+          {
+            name: 'Direct',
+            type: 'line',
+            stack: 'Total',
+            data: [320, 332, 301, 334, 390, 330, 320]
+          },
+          {
+            name: 'Search Engine',
+            type: 'line',
+            stack: 'Total',
+            data: [820, 932, 901, 934, 1290, 1330, 1320]
+          }
+        ]
+      }
     },
     {
-      name: 'Florida',
-      population: '20.27M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_Florida.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Florida.svg',
+      name: 'Stacked Area Chart',
+      flag: 'assets/images/echarts/StackedAreaChart.png',
+      option: {
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross',
+            label: {
+              backgroundColor: '#6a7985'
+            }
+          }
+        },
+        legend: {
+          data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
+        },
+        toolbox: {
+          feature: {
+            saveAsImage: {}
+          }
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        xAxis: [
+          {
+            type: 'category',
+            boundaryGap: false,
+            data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value'
+          }
+        ],
+        series: [
+          {
+            name: 'Email',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+              focus: 'series'
+            },
+            data: [120, 132, 101, 134, 90, 230, 210]
+          },
+          {
+            name: 'Union Ads',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+              focus: 'series'
+            },
+            data: [220, 182, 191, 234, 290, 330, 310]
+          },
+          {
+            name: 'Video Ads',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+              focus: 'series'
+            },
+            data: [150, 232, 201, 154, 190, 330, 410]
+          },
+          {
+            name: 'Direct',
+            type: 'line',
+            stack: 'Total',
+            areaStyle: {},
+            emphasis: {
+              focus: 'series'
+            },
+            data: [320, 332, 301, 334, 390, 330, 320]
+          },
+          {
+            name: 'Search Engine',
+            type: 'line',
+            stack: 'Total',
+            label: {
+              show: true,
+              position: 'top'
+            },
+            areaStyle: {},
+            emphasis: {
+              focus: 'series'
+            },
+            data: [820, 932, 901, 934, 1290, 1330, 1320]
+          }
+        ]
+      }
     },
     {
-      name: 'Texas',
-      population: '27.47M',
-      // https://commons.wikimedia.org/wiki/File:Flag_of_Texas.svg
-      flag: 'https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Texas.svg',
+      name: 'Basic Bar',
+      flag: 'assets/images/echarts/BasicBar.png',
+      option: {
+        xAxis: {
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [
+          {
+            data: [120, 200, 150, 80, 70, 110, 130],
+            type: 'bar'
+          }
+        ]
+      },
     },
+    {
+      name: 'Stacked Horizontal Bar',
+      flag: 'assets/images/echarts/StackedHorizontalBar.png',
+      option: {
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            // Use axis to trigger tooltip
+            type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
+          }
+        },
+        legend: {},
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        xAxis: {
+          type: 'value'
+        },
+        yAxis: {
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        series: [
+          {
+            name: 'Direct',
+            type: 'bar',
+            stack: 'total',
+            label: {
+              show: true
+            },
+            emphasis: {
+              focus: 'series'
+            },
+            data: [320, 302, 301, 334, 390, 330, 320]
+          },
+          {
+            name: 'Mail Ad',
+            type: 'bar',
+            stack: 'total',
+            label: {
+              show: true
+            },
+            emphasis: {
+              focus: 'series'
+            },
+            data: [120, 132, 101, 134, 90, 230, 210]
+          },
+          {
+            name: 'Affiliate Ad',
+            type: 'bar',
+            stack: 'total',
+            label: {
+              show: true
+            },
+            emphasis: {
+              focus: 'series'
+            },
+            data: [220, 182, 191, 234, 290, 330, 310]
+          },
+          {
+            name: 'Video Ad',
+            type: 'bar',
+            stack: 'total',
+            label: {
+              show: true
+            },
+            emphasis: {
+              focus: 'series'
+            },
+            data: [150, 212, 201, 154, 190, 330, 410]
+          },
+          {
+            name: 'Search Engine',
+            type: 'bar',
+            stack: 'total',
+            label: {
+              show: true
+            },
+            emphasis: {
+              focus: 'series'
+            },
+            data: [820, 832, 901, 934, 1290, 1330, 1320]
+          }
+        ]
+      }
+    }
   ];
 
   constructor(
@@ -208,6 +474,17 @@ export class FromComponent {
     }
 
   doAction(): void {
+    this.states.forEach( e => {
+      console.log(this.local_data.chart)
+      if (e.name == this.local_data.visualizationType) {
+        this.local_data.option = e.option;
+        this.local_data.img = e.flag
+        this.local_data.enable = true;
+        this.local_data.title = this.local_data.chart;
+        this.local_data.type = "echarts";
+        this.local_data.color = "primary";
+      }
+    })
     this.dialogRef.close({ event: this.action, data: this.local_data });
   }
   closeDialog(): void {

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,7 +10,7 @@ import { Component } from '@angular/core';
 export class DashboardComponent {
   public ajax: any;
   public colums: any;
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
     this.ajax = (dataTablesParameters: any, callback: any) => {
@@ -19,25 +20,31 @@ export class DashboardComponent {
           // 'https://xtlncifojk.eu07.qoddiapp.com/',
           // dataTablesParameters, {}
         ).subscribe(resp => {
-          let list = [
-            {
-              id: 0,
-              title: "aplication",
-              status: "true",
-              modified: "2023-01-02 09:20:10",
-              data: ""
-            },
-            {
-              id: 1,
-              title: "ip martix",
-              status: "false",
-              modified: "2023-01-02 08:10:10",
-              data: ""
-            }
-          ]
+          // let list = [
+          //   {
+          //     id: 0,
+          //     title: "aplication",
+          //     status: "true",
+          //     modified: "2023-01-02 09:20:10",
+          //     data: ""
+          //   },
+          //   {
+          //     id: 1,
+          //     title: "ip martix",
+          //     status: "false",
+          //     modified: "2023-01-02 08:10:10",
+          //     data: ""
+          //   }
+          // ]
+          const dashboard =  localStorage.getItem("dashboard");
+          console.log(dashboard)
+          let list = [];
+          if (dashboard) {
+            list = JSON.parse(dashboard);
+          }
           callback({
-            recordsTotal: resp.recordsTotal,
-            recordsFiltered: resp.recordsFiltered,
+            // recordsTotal: resp.recordsTotal,
+            // recordsFiltered: resp.recordsFiltered,
             data: list
             // data: resp.data             // <-- see here
           });
@@ -56,7 +63,7 @@ export class DashboardComponent {
   }
 
   modalOpen(event: any) {
-    alert(1)
+    this.router.navigate(['/settings/dashboard/add']);
   }
 
   edit(event: any) {
