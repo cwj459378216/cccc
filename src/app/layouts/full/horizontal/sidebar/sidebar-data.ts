@@ -20,14 +20,9 @@ export const navItems: NavItem[] = [
         route: 'dashboards/dashboard2',
       },
       {
-        displayName: 'Dashboard1',
-        iconName: 'aperture',
-        route: '/starter/dashboard',
-      },
-      {
-        displayName: 'Settings Widgets',
-        iconName: 'aperture',
-        route: '/starter/settings-widgets',
+        displayName: 'Dashboard',
+        iconName: 'point',
+        route: '/dashboards/dashboard',
       },
     ],
   },
@@ -520,5 +515,22 @@ export const navItems: NavItem[] = [
         route: 'tables/sticky-header-footer-table',
       },
     ],
+  },
+  {
+    displayName: 'Settings',
+    iconName: 'layout',
+    route: 'settings',
+    children: [
+      {
+        displayName: 'Widgets',
+        iconName: 'point',
+        route: 'settings/widgets',
+      },
+      {
+        displayName: 'Dashboard',
+        iconName: 'point',
+        route: 'settings/dashboard',
+      }
+    ]
   },
 ];

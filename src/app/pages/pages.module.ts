@@ -1,50 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule, DatePipe } from '@angular/common';
-import { StarterComponent } from './starter/starter.component';
+import { CommonModule } from '@angular/common';
 import { PagesRoutes } from './pages.routing.module';
-import { MaterialModule } from '../material.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { TemplateComponent } from '../share/template/template.component';
-import { GridsterComponent, GridsterItemComponent } from 'angular-gridster2';
-import { NgxEchartsModule } from 'ngx-echarts';
-import { TablerIconsModule } from 'angular-tabler-icons';
-import * as TablerIcons from 'angular-tabler-icons/icons';
-import { AppLineChartComponent } from './charts/line/line.component';
-import { SettingsWidgetsComponent } from './settings-widgets/settings-widgets.component';
-import { DataTablesModule } from 'angular-datatables';
-import { ListTableComponent } from '../share/list-table/list-table.component';
-import { FromComponent } from '../share/list-table/from/from.component';
-
 
 
 @NgModule({
     declarations: [
-        DashboardComponent,
-        TemplateComponent,
-        SettingsWidgetsComponent,
-        ListTableComponent,
-        FromComponent
     ],
     imports: [
         CommonModule,
-        MaterialModule,
-        FormsModule,
         RouterModule.forChild(PagesRoutes),
-        StarterComponent,
-        GridsterComponent,
-        GridsterItemComponent,
-        NgxEchartsModule.forRoot({
-          echarts: () => import('echarts')
-        }),
-      TablerIconsModule.pick(TablerIcons),
-      AppLineChartComponent,
-      ReactiveFormsModule,
-      DataTablesModule
-
     ],
-    providers: [DatePipe],
 
 })
 export class PagesModule {}

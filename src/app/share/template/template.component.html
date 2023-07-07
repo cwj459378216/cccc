@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<div [style.height]="gridsterContainerHeight" class="template">
+<div [style.height]="gridsterContainerHeight"  [ngClass]="{'disEdit': !disEdit, 'template': true}">
 <!--ignoreContentClass: 'gridster-item-content', // default content class to ignore the drag event from -->
 <gridster [options]="options"   id="gridster">
   <gridster-item [item]="item['view']" *ngFor="let item of dashboard;let i =index;">
@@ -71,6 +71,7 @@
             (click)="removeItem($event, item)"
             (touchstart)="removeItem($event, item)" mdTooltip="Remove"
               class="m-r-10 cursor-pointer delete-ioc"
+              *ngIf="disEdit"
             >
               <i-tabler name="trash" class="icon-18"></i-tabler>
             </a>
@@ -93,7 +94,7 @@
 
   </gridster-item>
 </gridster>
-<div class="list-chart">
+<div class="list-chart" *ngIf="disEdit">
   <!-- <div
       draggable="true"
       >

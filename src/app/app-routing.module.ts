@@ -1,3 +1,4 @@
+import { SettingsModule } from './pages/settings/settings.module';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BlankComponent } from './layouts/blank/blank.component';
@@ -63,6 +64,11 @@ const routes: Routes = [
           import('./pages/theme-pages/theme-pages.module').then(
             (m) => m.ThemePagesModule
           ),
+      },
+      {
+        path: 'settings',
+        loadChildren: () =>
+          import('./pages/settings/settings.module').then((m) => m.SettingsModule),
       },
     ],
   },

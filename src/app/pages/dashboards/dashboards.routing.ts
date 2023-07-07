@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 // dashboards
 import { AppDashboard1Component } from './dashboard1/dashboard1.component';
 import { AppDashboard2Component } from './dashboard2/dashboard2.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 export const DashboardsRoutes: Routes = [
   {
@@ -27,6 +28,17 @@ export const DashboardsRoutes: Routes = [
           urls: [
             { title: 'Dashboard', url: '/dashboards/dashboard1' },
             { title: 'eCommerce' },
+          ],
+        },
+      },
+      {
+        path: 'dashboard',
+        component: DashboardComponent,
+        data: {
+          title: 'Dashboard',
+          urls: [
+            { title: 'Dashboard', url: '/dashboards/dashboard' },
+            { title: 'Dashboard' },
           ],
         },
       },

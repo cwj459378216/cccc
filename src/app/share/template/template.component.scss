@@ -5,7 +5,9 @@ gridster.fit {
   background: none;
 }
 gridster-item {
-  padding: 5px;
+  padding: 0 !important;
+  margin: 0 !important;
+  background: none !important;
 }
 .demo-chart {
   width: 100%;
@@ -16,7 +18,10 @@ gridster-item {
 }
 #gridster {
   flex: 1;
-  border: 1px dashed rgb(224, 224, 224);
+  border: 1px dashed rgb(245, 241, 241);
+  padding: 0 !important;
+  padding-left: 10px !important;
+  padding-top: 10px !important;
 }
 .list-chart {
   width: 300px;
@@ -30,4 +35,9 @@ gridster-item {
 }
 .delete-ioc:hover {
   color: mat.get-color-from-palette($theme-primary, 500);
+}
+
+.disEdit #gridster {
+  padding: 0 !important;
+  border: none !important;
 }

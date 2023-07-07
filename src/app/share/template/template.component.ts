@@ -1,8 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import {GridsterComponent, GridsterConfig,GridsterItem } from "angular-gridster2";
-import { AppLineChartComponent } from 'src/app/pages/charts/line/line.component';
-
+import { Component, Input, OnInit} from '@angular/core';
+import { GridsterConfig,GridsterItem } from "angular-gridster2";
 
 @Component({
   selector: 'app-template',
@@ -10,8 +7,10 @@ import { AppLineChartComponent } from 'src/app/pages/charts/line/line.component'
   styleUrls: ['./template.component.scss'],
 })
 export class TemplateComponent implements OnInit{
+  @Input() disEdit: boolean;
+  @Input() dashboard: Array<GridsterItem> = [];
+
   public options!: GridsterConfig;
-  public dashboard!: Array<GridsterItem>;
   public fullscreen:string="fullscreen";
   public fullscreenIndex:string="demo1";
   public echartsInstance1:any;
@@ -234,26 +233,27 @@ export class TemplateComponent implements OnInit{
                    //console.log('itemResize', item, itemComponent);
                console.log('itemResizeCallback', item, itemComponent);
            },
-           margin: 10,
-           outerMargin: true,
-           minCols: 1,
-           maxCols: 8,
-           minRows: 1,
-           maxRows: 10,
-           maxItemCols: 5,
-           minItemCols: 1,
-           maxItemRows: 5,
-           minItemRows: 1,
-           defaultItemCols: 1,
-           defaultItemRows: 1,
-           fixedColWidth: 250,
-           fixedRowHeight: 250,
+           margin: 30, // 间隙
+           outerMargin: false,
+          //  outerMarginRight：0，
+          //  minCols: 1,
+          //  maxCols: 8,
+          //  minRows: 1,
+          //  maxRows: 10,
+          //  maxItemCols: 5,
+          //  minItemCols: 1,
+          //  maxItemRows: 5,
+          //  minItemRows: 1,
+          //  defaultItemCols: 1,
+          //  defaultItemRows: 1,
+          //  fixedColWidth: 250,
+          //  fixedRowHeight: 250,
            draggable: { /*是否可拖拽*/
-               enabled: true,
+               enabled: this.disEdit,
                /*stop: AppComponent.eventStop*/
            },
            resizable: { /*是否可以缩放*/
-               enabled: true,
+               enabled: this.disEdit,
                /*stop: AppComponent.eventStop*/
            },
            swap: false,
@@ -267,73 +267,8 @@ export class TemplateComponent implements OnInit{
 
 
        };
-      //  this.dashboard = [
-      //   {
-      //     'label': 'item1',
-      //     view: { cols: 2, rows: 1, y: 0, x: 0, id: 'demo1', hasContent: true },
-      //     x: 0,
-      //     y: 0,
-      //     rows: 1,
-      //     cols: 2
-      //   },
-      //   {
-      //     'label': 'item2',
-      //     view: { cols: 2, rows: 2, y: 0, x: 2, id: 'demo2' },
-      //     x: 2,
-      //     y: 0,
-      //     rows: 2,
-      //     cols: 2
-      //   },
-      //   {
-      //     'label': 'item3',
-      //     view: { cols: 1, rows: 1, y: 0, x: 4, id: 'demo3' },
-      //     x: 4,
-      //     y: 0,
-      //     rows: 1,
-      //     cols: 1
-      //   },
-      //   {
-      //     'label': 'item4',
-      //     view: { cols: 1, rows: 1, y: 0, x: 5, id: 'demo4' },
-      //     x: 5,
-      //     y: 0,
-      //     rows: 1,
-      //     cols: 1
-      //   },
-      //   {
-      //     'label': 'item5',
-      //     view: { cols: 1, rows: 1, y: 1, x: 0, id: 'demo5' },
-      //     x: 0,
-      //     y: 1,
-      //     rows: 1,
-      //     cols: 1
-      //   },
-      //   {
-      //     'label': 'item6',
-      //     view: { cols: 1, rows: 1, y: 1, x: 1, id: 'demo6' },
-      //     x: 1,
-      //     y: 1,
-      //     rows: 1,
-      //     cols: 1
-      //   },
-      //   {
-      //     'label': 'item7',
-      //     view: { cols: 2, rows: 2, y: 1, x: 5, label: 'Min rows & cols = 2', id: 'demo7' },
-      //     x: 5,
-      //     y: 1,
-      //     rows: 2,
-      //     cols: 2
-      //   },
-      //   {
-      //     'label': 'item8',
-      //     view: { cols: 2, rows: 2, y: 0, x: 0, label: 'Max rows & cols = 2', id: 'demo8' },
-      //     x: 0,
-      //     y: 2,
-      //     rows: 2,
-      //     cols: 2
-      //   }
-      // ];
-       this.dashboard =[];
+
+      //  this.dashboard =[];
    }
    ngAfterViewInit(){
        let fullscreen = document.getElementById('fullscreen');

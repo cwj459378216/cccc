@@ -7,9 +7,15 @@
           <input matInput (keyup)="searchTable($event)" placeholder="Filter" />
         </mat-form-field>
       </div>
-      <div class="col-lg-4 d-flex align-items-center justify-content-end">
+      <div class="col-lg-4 d-flex align-items-center justify-content-end" *ngIf="!openCustomTemplate">
         <button mat-flat-button (click)="openDialog('Add', {})" color="primary">
-          Add Employee
+          Add
+        </button>
+      </div>
+
+      <div class="col-lg-4 d-flex align-items-center justify-content-end" *ngIf="openCustomTemplate">
+        <button mat-flat-button (click)="openModal($event)" color="primary">
+          Add
         </button>
       </div>
     </div>
