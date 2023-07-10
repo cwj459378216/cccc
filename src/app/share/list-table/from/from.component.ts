@@ -5,6 +5,7 @@ import { ListTableComponent } from '../list-table.component';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { map, startWith } from 'rxjs';
+import { data1, data2, graph, graph1 } from './testData';
 
 @Component({
   selector: 'app-from',
@@ -411,6 +412,289 @@ export class FromComponent {
               focus: 'series'
             },
             data: [820, 832, 901, 934, 1290, 1330, 1320]
+          }
+        ]
+      }
+    },
+    {
+      name: 'Doughnut Chart',
+      flag: 'assets/images/echarts/DoughnutChart.png',
+      option: {
+        tooltip: {
+          trigger: 'item'
+        },
+        legend: {
+          top: '5%',
+          left: 'center'
+        },
+        series: [
+          {
+            name: 'Access From',
+            type: 'pie',
+            radius: ['40%', '70%'],
+            avoidLabelOverlap: false,
+            label: {
+              show: false,
+              position: 'center'
+            },
+            emphasis: {
+              label: {
+                show: true,
+                fontSize: 40,
+                fontWeight: 'bold'
+              }
+            },
+            labelLine: {
+              show: false
+            },
+            data: [
+              { value: 1048, name: 'Search Engine' },
+              { value: 735, name: 'Direct' },
+              { value: 580, name: 'Email' },
+              { value: 484, name: 'Union Ads' },
+              { value: 300, name: 'Video Ads' }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      name: 'Hide Overlapped Label',
+      flag: 'assets/images/echarts/HideOverlappedLabel.png',
+      option: {
+        tooltip: {},
+        legend: [
+          {
+            data: graph.categories.map(function (a) {
+              return a.name;
+            })
+          }
+        ],
+        series: [
+          {
+            name: 'Les Miserables',
+            type: 'graph',
+            layout: 'none',
+            data: graph.nodes,
+            links: graph.links,
+            categories: graph.categories,
+            roam: true,
+            label: {
+              show: true,
+              position: 'right',
+              formatter: '{b}'
+            },
+            labelLayout: {
+              hideOverlap: true
+            },
+            scaleLimit: {
+              min: 0.4,
+              max: 2
+            },
+            lineStyle: {
+              color: 'source',
+              curveness: 0.3
+            }
+          }
+        ]
+      }
+    },
+    {
+      name: 'Les Miserables',
+      flag: 'assets/images/echarts/LesMiserables.png',
+      option: {
+        tooltip: {},
+        legend: [
+          {
+            data: graph1.categories.map(function (a) {
+              return a.name;
+            })
+          }
+        ],
+        animationDurationUpdate: 1500,
+        animationEasingUpdate: 'quinticInOut',
+        series: [
+          {
+            name: 'Les Miserables',
+            type: 'graph',
+            layout: 'circular',
+            circular: {
+              rotateLabel: true
+            },
+            data: graph1.nodes,
+            links: graph1.links,
+            categories: graph1.categories,
+            roam: true,
+            label: {
+              position: 'right',
+              formatter: '{b}'
+            },
+            lineStyle: {
+              color: 'source',
+              curveness: 0.3
+            }
+          }
+        ]
+      }
+    },
+    {
+      name: 'From Left to Right Tree',
+      flag: 'assets/images/echarts/FromLeftToRightTree.png',
+      option: {
+        tooltip: {
+          trigger: 'item',
+          triggerOn: 'mousemove'
+        },
+        series: [
+          {
+            type: 'tree',
+            data: [data1],
+            top: '1%',
+            left: '7%',
+            bottom: '1%',
+            right: '20%',
+            symbolSize: 7,
+            label: {
+              position: 'left',
+              verticalAlign: 'middle',
+              align: 'right',
+              fontSize: 9
+            },
+            leaves: {
+              label: {
+                position: 'right',
+                verticalAlign: 'middle',
+                align: 'left'
+              }
+            },
+            emphasis: {
+              focus: 'descendant'
+            },
+            expandAndCollapse: true,
+            animationDuration: 550,
+            animationDurationUpdate: 750
+          }
+        ]
+      }
+    },
+    {
+      name: 'Sankey with Levels Setting',
+      flag: 'assets/images/echarts/SankeywithLevelsSetting.png',
+      option: {
+        tooltip: {
+          trigger: 'item',
+          triggerOn: 'mousemove'
+        },
+        series: [
+          {
+            type: 'sankey',
+            data: data2.nodes,
+            links: data2.links,
+            emphasis: {
+              focus: 'adjacency'
+            },
+            levels: [
+              {
+                depth: 0,
+                itemStyle: {
+                  color: '#fbb4ae'
+                },
+                lineStyle: {
+                  color: 'source',
+                  opacity: 0.6
+                }
+              },
+              {
+                depth: 1,
+                itemStyle: {
+                  color: '#b3cde3'
+                },
+                lineStyle: {
+                  color: 'source',
+                  opacity: 0.6
+                }
+              },
+              {
+                depth: 2,
+                itemStyle: {
+                  color: '#ccebc5'
+                },
+                lineStyle: {
+                  color: 'source',
+                  opacity: 0.6
+                }
+              },
+              {
+                depth: 3,
+                itemStyle: {
+                  color: '#decbe4'
+                },
+                lineStyle: {
+                  color: 'source',
+                  opacity: 0.6
+                }
+              }
+            ],
+            lineStyle: {
+              curveness: 0.5
+            }
+          }
+        ]
+      }
+    },
+    {
+      name: 'Stage Speed Gauge',
+      flag: 'assets/images/echarts/StageSpeedGauge.png',
+      option:  {
+        series: [
+          {
+            type: 'gauge',
+            axisLine: {
+              lineStyle: {
+                width: 30,
+                color: [
+                  [0.3, '#67e0e3'],
+                  [0.7, '#37a2da'],
+                  [1, '#fd666d']
+                ]
+              }
+            },
+            pointer: {
+              itemStyle: {
+                color: 'auto'
+              }
+            },
+            axisTick: {
+              distance: -30,
+              length: 8,
+              lineStyle: {
+                color: '#fff',
+                width: 2
+              }
+            },
+            splitLine: {
+              distance: -30,
+              length: 30,
+              lineStyle: {
+                color: '#fff',
+                width: 4
+              }
+            },
+            axisLabel: {
+              color: 'inherit',
+              distance: 40,
+              fontSize: 20
+            },
+            detail: {
+              valueAnimation: true,
+              formatter: '{value} km/h',
+              color: 'inherit'
+            },
+            data: [
+              {
+                value: 70
+              }
+            ]
           }
         ]
       }
