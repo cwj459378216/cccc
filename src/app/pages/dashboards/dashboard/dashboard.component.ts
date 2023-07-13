@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DashboardComponent {
   public disEdit: boolean = false;
   public data: any;
+  public stats: any;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -94,6 +95,12 @@ export class DashboardComponent {
           })
         }
       });
+
+      const list = localStorage.getItem("testChartsList");
+      if (list) {
+        this.stats = JSON.parse(list);
+        console.log(JSON.parse(list))
+      }
 
   }
 }

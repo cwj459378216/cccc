@@ -16,96 +16,130 @@
     <!-- --------------------------------------------------------------- -->
     <!--  Search -->
     <!-- --------------------------------------------------------------- -->
-    <button mat-icon-button (click)="openDialog()" class="d-flex">
+    <!-- <button mat-icon-button (click)="openDialog()" class="d-flex">
       <i-tabler name="search" class="icon-20 d-flex"></i-tabler>
-    </button>
+    </button> -->
 
-    <div class="d-none d-lg-flex">
-      <!-- --------------------------------------------------------------- -->
-      <!--  Links -->
-      <!-- --------------------------------------------------------------- -->
-      <button
-        mat-button
-        [matMenuTriggerFor]="appsmenu"
-        aria-label="Notifications"
-      >
-        <div class="d-flex align-items-center">
-          Apps <i-tabler name="chevron-down" class="icon-16 m-l-4"></i-tabler>
-        </div>
-      </button>
-      <mat-menu #appsmenu="matMenu" class="apps-dd cardWithShadow">
-        <div class="row">
-          <div class="col-sm-8 b-r-1 p-r-0">
-            <div class="p-32 p-b-0">
+    <div class="flex-1-auto search-input">
+      <div class="search-box ">
+        <mat-card-content class="p0">
+          <button
+            mat-flat-button
+            color="primary"
+            [matMenuTriggerFor]="menu"
+          >
+            <span>Search Type</span>
+            <span><mat-icon style="vertical-align: middle;"> expand_more </mat-icon></span>
+          </button>
+          <mat-menu #menu="matMenu" class="cardWithShadow">
+            <button mat-menu-item>End-Node</button>
+            <button mat-menu-item>Asset</button>
+            <button mat-menu-item>VLAN</button>
+            <button mat-menu-item>Mail</button>
+            <button mat-menu-item>Web</button>
+            <button mat-menu-item>URL</button>
+            <button mat-menu-item>Flow</button>
+            <button mat-menu-item>IP matrix</button>
+            <button mat-menu-item>Symptom</button>
+          </mat-menu>
+        </mat-card-content>
+        <mat-form-field appearance="outline" class="w-100 ">
+          <input matInput placeholder="Search Contacts" />
+          <mat-icon matPrefix>
+            <i-tabler name="search" class="icon-20"></i-tabler>
+          </mat-icon>
+          <mat-icon matSuffix>
+            <a href="javascript:;" (click)="showSearchAdv()"><i-tabler name="sort-descending"></i-tabler></a>
+          </mat-icon>
+          <mat-icon matSuffix>
+            <a href="javascript:;"><i-tabler name="chevron-right"></i-tabler></a>
+          </mat-icon>
+
+        </mat-form-field>
+      </div>
+      <div class="drop-box">
+        <mat-card class="cardWithShadow theme-card">
+          <mat-card-content class="b-t-1">
+            <form>
               <div class="row">
-                <div
-                  class="col-sm-6 text-hover-primary"
-                  *ngFor="let appdd of apps"
-                >
-                  <a
-                    [routerLink]="[appdd.link]"
-                    class="d-flex align-items-center text-decoration-none m-b-24"
+                <div class="col-sm-4 d-flex align-items-center">
+                  <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16"
+                    >Name</mat-label
                   >
-                    <span
-                      class="text-primary bg-light-primary rounded icon-40 d-flex align-items-center justify-content-center"
-                    >
-                      <img [src]="appdd.img" width="20" />
-                    </span>
-
-                    <div class="m-l-16">
-                      <h5
-                        class="f-s-14 f-w-600 m-0 textprimary mat-body-1 hover-text"
-                      >
-                        {{ appdd.title }}
-                      </h5>
-                      <span class="mat-body-1 f-s-12">{{
-                        appdd.subtitle
-                      }}</span>
-                    </div>
-                  </a>
+                </div>
+                <div class="col-sm-8">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <input matInput placeholder="John Deo" />
+                  </mat-form-field>
                 </div>
               </div>
-            </div>
-            <div
-              class="b-t-1 p-24 d-none d-lg-flex align-items-center justify-content-between"
-            >
-              <span
-                class="d-flex align-items-center mat-subtitle-1 f-s-16 f-w-500"
-              >
-                <i-tabler name="help" class="icon-20 m-r-8"></i-tabler
-                >Frequently Asked Questions
-              </span>
-              <a
-                [routerLink]="['/theme-pages/faq']"
-                mat-flat-button
-                color="primary"
-                >Check</a
-              >
-            </div>
-          </div>
-          <div class="col-sm-4">
-            <div class="p-x-16 p-y-32">
-              <h4 class="f-s-18 f-w-600 mat-subtitle-1 m-b-16">Quick Links</h4>
-              <div
-                class="text-hover-primary"
-                *ngFor="let quicklink of quicklinks"
-              >
-                <a
-                  [routerLink]="[quicklink.link]"
-                  class="hover-text text-decoration-none mat-body-1 f-w-600 d-block p-y-8"
-                  >{{ quicklink.title }}</a
-                >
+              <div class="row">
+                <div class="col-sm-4 d-flex align-items-center">
+                  <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16"
+                    >Company</mat-label
+                  >
+                </div>
+                <div class="col-sm-8">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <input matInput placeholder="ACME Inc." />
+                  </mat-form-field>
+                </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </mat-menu>
-      <a mat-button [routerLink]="['/apps/chat']">Chat</a>
-      <a mat-button [routerLink]="['/apps/calendar']">Calendar</a>
-      <a mat-button [routerLink]="['/apps/email/inbox']">Email</a>
+              <div class="row">
+                <div class="col-sm-4 d-flex align-items-center">
+                  <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16"
+                    >Email</mat-label
+                  >
+                </div>
+                <div class="col-sm-8">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <input matInput placeholder="john.deo" type="email" />
+                    <span matTextSuffix>@exmaple.com</span>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4 d-flex align-items-center">
+                  <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16"
+                    >Phone No</mat-label
+                  >
+                </div>
+                <div class="col-sm-8">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <input matInput placeholder="123 4561 123" />
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4 d-flex align-items-center">
+                  <mat-label class="mat-subtitle-2 f-w-600 d-block m-b-16"
+                    >Message
+                  </mat-label>
+                </div>
+                <div class="col-sm-8">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <textarea
+                      rows="5"
+                      matInput
+                      placeholder="Hi, Do you have a moment to talk Deo ?"
+                    ></textarea>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row justify-content-end">
+                <div class="col-sm-8">
+                  <button mat-flat-button color="primary">Send</button>
+                </div>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
 
-    <span class="flex-1-auto"></span>
+
+
+    <!-- <span class="flex-1-auto"></span> -->
 
     <!-- Mobile Menu -->
     <button

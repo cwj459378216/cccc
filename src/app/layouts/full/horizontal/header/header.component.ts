@@ -3,6 +3,7 @@ import {
   Output,
   EventEmitter,
   Input,
+  ViewEncapsulation,
 } from '@angular/core';
 import { CoreService } from 'src/app/services/core.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -50,6 +51,8 @@ interface quicklinks {
   standalone: true,
   imports: [RouterModule, TablerIconsModule, MaterialModule, BrandingComponent, NgFor],
   templateUrl: './header.component.html',
+  styleUrls: ['./header.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppHorizontalHeaderComponent {
    @Input() showToggle = true;
@@ -100,11 +103,11 @@ export class AppHorizontalHeaderComponent {
   }
 
   openDialog() {
-    const dialogRef = this.dialog.open(AppHorizontalSearchDialogComponent);
+    // const dialogRef = this.dialog.open(AppHorizontalSearchDialogComponent);
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+    // dialogRef.afterClosed().subscribe((result) => {
+    //   console.log(`Dialog result: ${result}`);
+    // });
   }
 
   changeLanguage(lang: any): void {
@@ -271,6 +274,11 @@ export class AppHorizontalHeaderComponent {
     },
   ];
 
+
+  showSearchAdv() {
+    $('.drop-box').toggleClass('show');
+  }
+
 }
 
 @Component({
@@ -288,4 +296,5 @@ export class AppHorizontalSearchDialogComponent {
   // filtered = this.navItemsData.find((obj) => {
   //   return obj.displayName == this.searchinput;
   // });
+
 }

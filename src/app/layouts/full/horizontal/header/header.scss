@@ -1,0 +1,63 @@
+@use "@angular/material" as mat;
+@import "/src//assets//scss//themecolors/default_theme";
+
+.search-box {
+  display: flex;
+  align-items: center;
+  .p0 {
+    padding: 0 !important;
+  }
+  .mat-mdc-form-field {
+    flex-direction: inherit;
+    display: block;
+  }
+  .mat-mdc-form-field-infix {
+    min-height: 0 !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+  }
+  .mat-mdc-form-field-icon-prefix>.mat-icon, .mat-mdc-form-field-icon-suffix>.mat-icon {
+    padding: 6px;
+  }
+  .mat-mdc-unelevated-button.mat-primary {
+    border-radius: 7px 0 0 7px !important;
+  }
+  .mdc-text-field--outlined .mdc-notched-outline .mdc-notched-outline__leading {
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+    display: none;
+  }
+  .mdc-notched-outline__trailing {
+    border: none !important;
+    border-top: 1px solid !important;
+    border-bottom: 1px solid !important;
+    border-right: 1px solid !important;
+    border-color: #cccc !important;
+  }
+  .mat-mdc-form-field-subscript-wrapper {
+    display: none;
+  }
+  a {
+    color: mat.get-color-from-palette($theme-primary, 500);;
+  }
+  a:hover {
+    color: mat.get-color-from-palette($mat-secondary, 500);;
+  }
+}
+.cdk-overlay-container .mat-mdc-menu-panel.mat-mdc-menu-panel {
+  min-width: 138px;
+}
+.search-input {
+  position: relative;
+  .drop-box {
+    width: 100%;
+    position: absolute;
+    left: 0px;
+    top: 40px;
+    display: none;
+  }
+  .show {
+    display: block;
+  }
+}
+
