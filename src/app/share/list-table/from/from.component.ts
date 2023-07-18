@@ -121,7 +121,12 @@ export class FromComponent {
     stateGroup: '',
   });
 
-
+  colors: any[] = [
+    '#4e91f0',
+    '#c097f8',
+    '#2cc3b4',
+    '#ff9514',
+   ]
   // state
   stateCtrl = new FormControl('');
   filteredStates: Observable<any[]>;
@@ -142,27 +147,16 @@ export class FromComponent {
             data: [150, 230, 224, 218, 135, 147, 260],
             type: 'line'
           }
-        ]
+        ],
+        color: this.colors
       }
     },
     {
       name: 'Stacked Line Chart',
       flag: 'assets/images/echarts/StackedLineChart.png',
       option: {
-        title: {
-          text: 'Stacked Line'
-        },
         tooltip: {
           trigger: 'axis'
-        },
-        legend: {
-          data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
-        },
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
         },
         toolbox: {
           feature: {
@@ -208,35 +202,16 @@ export class FromComponent {
             stack: 'Total',
             data: [820, 932, 901, 934, 1290, 1330, 1320]
           }
-        ]
+        ],
+        color: this.colors
       }
     },
     {
       name: 'Stacked Area Chart',
       flag: 'assets/images/echarts/StackedAreaChart.png',
       option: {
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            type: 'cross',
-            label: {
-              backgroundColor: '#6a7985'
-            }
-          }
-        },
         legend: {
           data: ['Email', 'Union Ads', 'Video Ads', 'Direct', 'Search Engine']
-        },
-        toolbox: {
-          feature: {
-            saveAsImage: {}
-          }
-        },
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
         },
         xAxis: [
           {
@@ -305,7 +280,8 @@ export class FromComponent {
             },
             data: [820, 932, 901, 934, 1290, 1330, 1320]
           }
-        ]
+        ],
+        color: this.colors
       }
     },
     {
@@ -324,27 +300,15 @@ export class FromComponent {
             data: [120, 200, 150, 80, 70, 110, 130],
             type: 'bar'
           }
-        ]
+        ],
+        color: this.colors
       },
     },
     {
       name: 'Stacked Horizontal Bar',
       flag: 'assets/images/echarts/StackedHorizontalBar.png',
       option: {
-        tooltip: {
-          trigger: 'axis',
-          axisPointer: {
-            // Use axis to trigger tooltip
-            type: 'shadow' // 'shadow' as default; can also be 'line' or 'shadow'
-          }
-        },
         legend: {},
-        grid: {
-          left: '3%',
-          right: '4%',
-          bottom: '3%',
-          containLabel: true
-        },
         xAxis: {
           type: 'value'
         },
@@ -413,20 +377,14 @@ export class FromComponent {
             },
             data: [820, 832, 901, 934, 1290, 1330, 1320]
           }
-        ]
+        ],
+        color: this.colors
       }
     },
     {
       name: 'Doughnut Chart',
       flag: 'assets/images/echarts/DoughnutChart.png',
       option: {
-        tooltip: {
-          trigger: 'item'
-        },
-        legend: {
-          top: '5%',
-          left: 'center'
-        },
         series: [
           {
             name: 'Access From',
@@ -455,14 +413,14 @@ export class FromComponent {
               { value: 300, name: 'Video Ads' }
             ]
           }
-        ]
+        ],
+        color: this.colors
       }
     },
     {
       name: 'Hide Overlapped Label',
       flag: 'assets/images/echarts/HideOverlappedLabel.png',
       option: {
-        tooltip: {},
         legend: [
           {
             data: graph.categories.map(function (a) {
@@ -496,14 +454,14 @@ export class FromComponent {
               curveness: 0.3
             }
           }
-        ]
+        ],
+        color: this.colors
       }
     },
     {
       name: 'Les Miserables',
       flag: 'assets/images/echarts/LesMiserables.png',
       option: {
-        tooltip: {},
         legend: [
           {
             data: graph1.categories.map(function (a) {
@@ -534,17 +492,14 @@ export class FromComponent {
               curveness: 0.3
             }
           }
-        ]
+        ],
+        color: this.colors
       }
     },
     {
       name: 'From Left to Right Tree',
       flag: 'assets/images/echarts/FromLeftToRightTree.png',
       option: {
-        tooltip: {
-          trigger: 'item',
-          triggerOn: 'mousemove'
-        },
         series: [
           {
             type: 'tree',
@@ -574,17 +529,14 @@ export class FromComponent {
             animationDuration: 550,
             animationDurationUpdate: 750
           }
-        ]
+        ],
+        color: this.colors
       }
     },
     {
       name: 'Sankey with Levels Setting',
       flag: 'assets/images/echarts/SankeywithLevelsSetting.png',
       option: {
-        tooltip: {
-          trigger: 'item',
-          triggerOn: 'mousemove'
-        },
         series: [
           {
             type: 'sankey',
@@ -639,7 +591,8 @@ export class FromComponent {
               curveness: 0.5
             }
           }
-        ]
+        ],
+        color: this.colors
       }
     },
     {
@@ -696,7 +649,8 @@ export class FromComponent {
               }
             ]
           }
-        ]
+        ],
+        color: this.colors
       }
     }
   ];
